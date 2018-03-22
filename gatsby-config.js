@@ -14,6 +14,13 @@ module.exports = {
       }
     },
     {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/src/content-types`,
+        name: 'content-types'
+      }
+    },
+    {
       resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [

@@ -3,19 +3,24 @@ import { Container, Card, CardText, CardBody, CardTitle, CardSubtitle } from 're
 import Link from 'gatsby-link'
 import graphql from 'graphql'
 
-const IndexPage = ({ data }) => (
+const IndexPage = ((
+  filter = ({ node: post })=> (
+    !post.frontmatter.hidden && post.frontmatter.contentType === 'blog'
+  ),
+  mapper = ({ node: post }) => (
+    <Card style={{marginBottom: 10}} key={post.id}>
+      <CardBody>
+        <CardTitle><Link to={post.frontmatter.path}>{post.frontmatter.title}</Link></CardTitle>
+        <CardSubtitle style={{marginBottom: 10}}>{post.frontmatter.date}</CardSubtitle>
+        <CardText>{post.excerpt}<pre>{JSON.stringify(post, null, 2)}</pre></CardText>
+      </CardBody>
+    </Card>
+  )
+)=> ({ data }) => (
   <Container>
-    {data.allMarkdownRemark.edges.filter(post => post.node.frontmatter.contentType === 'blog').map(({ node: post }) => (
-      <Card style={{marginBottom: 10}} key={post.id}>
-        <CardBody>
-          <CardTitle><Link to={post.frontmatter.path}>{post.frontmatter.title}</Link></CardTitle>
-          <CardSubtitle style={{marginBottom: 10}}>{post.frontmatter.date}</CardSubtitle>
-          <CardText>{post.excerpt}</CardText>
-        </CardBody>
-      </Card>
-    ))}
+    {data.allMarkdownRemark.edges.filter(filter).map(mapper)}
   </Container>
-)
+))();
 
 export default IndexPage
 
@@ -31,6 +36,7 @@ export const pageQuery = graphql`
             contentType
             date(formatString: "MMMM DD, YYYY")
             path
+            hidden
           }
         }
       }
