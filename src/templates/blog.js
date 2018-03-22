@@ -1,10 +1,9 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Container, Card, CardTitle, CardGroup, CardBody } from 'reactstrap'
 import Helmet from 'react-helmet'
 import graphql from 'graphql'
 import { basename } from 'path'
 import Link from 'gatsby-link'
-import { get } from 'lodash';
 
 // find a post title by path
 const findNode = (path, data) => data.allMarkdownRemark.edges
@@ -14,10 +13,7 @@ const findNode = (path, data) => data.allMarkdownRemark.edges
 
 export default function Template ({ data }) {
   const { markdownRemark: post } = data
-  if (!post) return null;
-
   const related = post.frontmatter.related ? post.frontmatter.related.map(r => findNode(r.post, data)) : []
-
   return (
     <div>
       <Helmet title={`Blog | ${post.frontmatter.title}`}>
@@ -83,7 +79,6 @@ export const pageQuery = graphql`
         path
         date(formatString: "MMMM DD, YYYY")
         title
-        hidden
         attachments {
           filename
         }

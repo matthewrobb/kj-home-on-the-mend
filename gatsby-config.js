@@ -2,8 +2,8 @@ module.exports = {
   siteMetadata: {
     title: 'Gatsby Starter Blog',
     author: 'konsumer',
-    authorLink: '',
-    disqus: false //'gatsby-starter-blog'// put your disqus ID here
+    authorLink: 'https://github.com/konsumer',
+    disqus: 'gatsby-starter-blog'// put your disqus ID here
   },
   plugins: [
     {
@@ -16,8 +16,8 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: `${__dirname}/src/content-types`,
-        name: 'content-types'
+        path: `${__dirname}/src/examples`,
+        name: 'examples'
       }
     },
     {
