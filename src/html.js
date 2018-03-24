@@ -16,7 +16,7 @@ module.exports = class HTML extends React.Component {
       css = (
         <style
           id='gatsby-inlined-css'
-          dangerouslySetInnerHTML={{ __html: stylesStr }}
+          dangerouslySetInnerHTML={{ __html: `\n${stylesStr}\n` }}
         />
       )
     }
