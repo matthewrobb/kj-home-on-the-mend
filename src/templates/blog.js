@@ -13,24 +13,13 @@ const findNode = (path, data) => data.allMarkdownRemark.edges
 
 export default function Template ({ data }) {
   const { markdownRemark: post } = data
-  
+
   if (!post) return null;
 
   const related = post.frontmatter.related ? post.frontmatter.related.map(r => findNode(r.post, data)) : []
   return (
     <div>
       <Helmet title={`Blog | ${post.frontmatter.title}`}>
-        {data.site.siteMetadata.disqus && (
-          <script id='dsq-count-scr' src='//gatsby-starter-blog.disqus.com/count.js' async />
-        )}
-        {data.site.siteMetadata.disqus && (
-          <script>{`(function() {
-          var d = document, s = d.createElement('script');
-          s.src = 'https://${data.site.siteMetadata.disqus}.disqus.com/embed.js';
-          s.setAttribute('data-timestamp', +new Date());
-          (d.head || d.body).appendChild(s);
-          })();`}</script>
-        )}
       </Helmet>
       <Container>
         <h1 className='display-3'>{post.frontmatter.title}</h1>
@@ -59,23 +48,12 @@ export default function Template ({ data }) {
           </Card>
         ))}
       </CardGroup></Container>)}
-
-      {data.site.siteMetadata.disqus && (<Container>
-        <hr />
-        <div id='disqus_thread' />
-      </Container>)}
     </div>
   )
 }
 
 export const pageQuery = graphql`
   query BlogPostByPath($path: String!) {
-    site {
-      siteMetadata {
-        disqus
-      }
-    }
-    
     markdownRemark(frontmatter: { path: { eq: $path } }) {
       html
       frontmatter {
@@ -91,10 +69,10 @@ export const pageQuery = graphql`
       }
     }
 
-    allMarkdownRemark{
-      edges{
-        node{
-          frontmatter{
+    allMarkdownRemark {
+      edges {
+        node {
+          frontmatter {
             title
             path
           }
