@@ -19,6 +19,7 @@
     "gatsby-source-filesystem": "^1.5.27",
     "gatsby-transformer-remark": "^1.7.37",
     "js-beautify": "^1.7.5",
+    "react": "^16.2.0",
     "reactstrap": "^5.0.0"
   },
   "keywords": [
