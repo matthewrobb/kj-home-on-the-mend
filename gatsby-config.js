@@ -22,12 +22,24 @@ module.exports = {
       options: {
         plugins: [
           'gatsby-remark-prismjs',
-          'gatsby-remark-copy-linked-files'
+          'gatsby-remark-copy-linked-files',
+          {
+            resolve: "gatsby-remark-custom-blocks",
+            options: {
+              blocks: {
+                danger: {
+                  classes: "custom-block-danger"
+                }
+              }
+            }
+          }
         ]
       }
     },
     'gatsby-plugin-offline',
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-sass'
+    'gatsby-plugin-sass',
+    'gatsby-plugin-netlify',
+    'gatsby-plugin-react-next'
   ]
 }

@@ -10,12 +10,12 @@ import Helmet from 'react-helmet'
 import 'prismjs/themes/prism-twilight.css'
 
 // main site style
-import './index.scss'
+import './index.scss';
 
 const TemplateWrapper = ({ children, data }) => {
-  let user
+  let user;
   if (typeof window !== 'undefined') {
-    user = window.netlifyIdentity && window.netlifyIdentity.currentUser()
+    user = window.netlifyIdentity && window.netlifyIdentity.currentUser();
   }
   return (
     <div className='App'>
@@ -39,12 +39,12 @@ const TemplateWrapper = ({ children, data }) => {
       </div>
       <div className='pageContent'>{children()}</div>
     </div>
-  )
-}
+  );
+};
 
 TemplateWrapper.propTypes = {
   children: PropTypes.func
-}
+};
 
 export const pageQuery = graphql`
   query LayoutIndexQuery {
@@ -54,6 +54,6 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
 
-export default TemplateWrapper
+export default TemplateWrapper;
