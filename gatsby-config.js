@@ -27,9 +27,7 @@ module.exports = {
             resolve: "gatsby-remark-custom-blocks",
             options: {
               blocks: {
-                danger: {
-                  classes: "custom-block-danger"
-                }
+                danger: 'custom-block-danger'
               }
             }
           }
