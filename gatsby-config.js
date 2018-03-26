@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Starter Blog'
+    title: 'Home on the Mend - Handyman Service'
   },
   plugins: [
     {
@@ -11,26 +11,10 @@ module.exports = {
       }
     },
     {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        path: `${__dirname}/src/examples`,
-        name: 'examples'
-      }
-    },
-    {
       resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
-          'gatsby-remark-prismjs',
-          'gatsby-remark-copy-linked-files',
-          {
-            resolve: "gatsby-remark-custom-blocks",
-            options: {
-              blocks: {
-                danger: 'custom-block-danger'
-              }
-            }
-          }
+          'gatsby-remark-copy-linked-files'
         ]
       }
     },

@@ -1,16 +1,22 @@
-import React from 'react'
-import { Container } from 'reactstrap'
-import PropTypes from 'prop-types'
-import graphql from 'graphql'
-import Link from 'gatsby-link'
-import Helmet from 'react-helmet'
+import React from 'react';
+import PropTypes from 'prop-types';
+import graphql from 'graphql';
 
-// code syntax-highlighting theme
-// feel free to change it to another one
-import 'prismjs/themes/prism-twilight.css'
+import Link from 'gatsby-link';
+import Helmet from 'react-helmet';
 
 // main site style
 import './index.scss';
+
+export const pageQuery = graphql`
+  query LayoutIndexQuery {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`;
 
 const TemplateWrapper = ({ children, data }) => {
   let user;
@@ -21,7 +27,7 @@ const TemplateWrapper = ({ children, data }) => {
     <div className='App'>
       <Helmet title={data.site.siteMetadata.title} />
       <div className='navbar navbar-expand-lg navbar-dark bg-primary'>
-        <Container>
+        <div>
           <Link to='/' className='navbar-brand'>{data.site.siteMetadata.title}</Link>
           <ul className='nav navbar-nav'>
 
@@ -35,7 +41,7 @@ const TemplateWrapper = ({ children, data }) => {
               <Link to='/about' className='nav-link'>About</Link>
             </li>
           </ul>
-        </Container>
+        </div>
       </div>
       <div className='pageContent'>{children()}</div>
     </div>
@@ -45,15 +51,5 @@ const TemplateWrapper = ({ children, data }) => {
 TemplateWrapper.propTypes = {
   children: PropTypes.func
 };
-
-export const pageQuery = graphql`
-  query LayoutIndexQuery {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`;
 
 export default TemplateWrapper;

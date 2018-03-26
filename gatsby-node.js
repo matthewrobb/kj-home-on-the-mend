@@ -1,6 +1,13 @@
 const path = require('path');
 
-exports.createPages = createPages;
+exports.modifyWebpackConfig = modifyWebpackConfig;
+function modifyWebpackConfig({ config, stage }) {
+  if (stage === 'build-html') {
+    config._config.entry.main = require.resolve('./build/render-page');
+  }
+}
+
+/*exports.createPages = createPages;
 async function createPages({ boundActionCreators, graphql }) {
   const { errors, data } = await graphql(`{
     allMarkdownRemark {
@@ -28,11 +35,6 @@ async function createPages({ boundActionCreators, graphql }) {
       context: {} // additional data can be passed via context
     });
   }
-}
+}*/
 
-exports.modifyWebpackConfig = modifyWebpackConfig;
-function modifyWebpackConfig({ config, stage }) {
-  if (stage === 'build-html') {
-    config._config.entry.main = require.resolve('./src/render-page');
-  }
-}
+
